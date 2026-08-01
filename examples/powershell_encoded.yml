@@ -1,0 +1,29 @@
+title: Suspicious PowerShell Encoded Command
+id: 6e897651-f157-4d8f-aaeb-df8151488385
+status: experimental
+description: >
+  Detects PowerShell execution with an encoded command argument (-enc /
+  -EncodedCommand). Attackers frequently base64-encode payloads to evade
+  simple command-line inspection and signature matching.
+author: DetectionForge example
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.defense_evasion
+  - attack.t1027
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\powershell.exe'
+    CommandLine|contains:
+      - '-enc'
+      - '-EncodedCommand'
+      - '-e '
+  condition: selection
+falsepositives:
+  - Administrative scripts that legitimately pass encoded commands
+level: high

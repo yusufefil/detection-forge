@@ -1,0 +1,8 @@
+# Core (deterministic conversion + dry-run AI work with just these)
+pysigma>=1.0,<2.0
+pysigma-backend-kusto>=1.0
+pyyaml>=6.0
+
+# Optional AI providers — install the one you use:
+#   pip install openai        # for DETFORGE_AI_PROVIDER=openai or =azure
+#   pip install anthropic     # for DETFORGE_AI_PROVIDER=anthropic

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "detection-forge"
+version = "0.1.0"
+description = "AI-assisted detection engineering: Sigma -> KQL with MITRE ATT&CK mapping, FP analysis, and tuning."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Yusuf Efil" }]
+keywords = ["sigma", "kql", "detection-engineering", "mitre-attack", "sentinel", "defender", "soc"]
+
+dependencies = [
+    "pysigma>=1.0,<2.0",
+    "pysigma-backend-kusto>=1.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Pick the provider you use; none are required for the deterministic path or dry-run.
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.39"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+detforge = "detection_forge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
